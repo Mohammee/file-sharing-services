@@ -24,6 +24,7 @@ Route::middleware('signed')->controller(MediaController::class)->group(function 
     Route::get('/medias/download/{media}', 'download')->name('medias.download');
 });
 
+Route::get('/medias/{media:code}/preview/{filename}', [MediaController::class, 'showFile'])->name('medias.show-file');
 Route::resource('/medias', MediaController::class)->middleware('auth');
 
 

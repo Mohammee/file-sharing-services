@@ -22,7 +22,7 @@
                             </strong></label>
 
                         <div class="d-flex justify-between">
-                            <x-primary-button data-url="{{ \Storage::disk('uploads')->url($media->file) }}" class="showButton">Show</x-primary-button>
+                            <x-primary-button data-url="{{ route('medias.show-file',[$media->code, $media->file]) }}" class="showButton">Show</x-primary-button>
                             <a href="{{ route('medias.edit', $media->id) }}"><x-secondary-button >Edit</x-secondary-button></a>
                         </div>
                         <form action="{{ route('medias.destroy', $media->id) }}" method="post" @class(['m-2'])>

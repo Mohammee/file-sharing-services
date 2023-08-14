@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-guest-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <a href="{{ url('/') }}" class="hover:text-gray-400">{{ __('Dashboard') }}</a>
@@ -21,7 +21,7 @@
                             <label class="col-form-label mb-2 d-block">Description: <strong
                                     class="text-info">{{ $media->description }}</strong></label>
 
-                            <a href="{{ \Storage::disk('uploads')->url($media->file) }}" target="_blank"> <x-primary-button @class(['w-100 align-items-center'])>Show</x-primary-button>  </a>
+                            <a href="{{ route('medias.show-file', [$media->code, $media->file]) }}" target="_blank"> <x-primary-button @class(['w-100 align-items-center'])>Show</x-primary-button>  </a>
                             <div class="d-flex justify-between m-3">
                                 <a href="{{ $link }}"><x-secondary-button >Download</x-secondary-button></a>
                             </div>
@@ -32,4 +32,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+</x-guest-layout>

@@ -15,7 +15,7 @@ class Media extends Model
 {
     use HasFactory;
 
-    private static string $disk = 'uploads';
+    private static string $disk = 'local';
     protected $table = 'media';
 
     protected $fillable = ['title', 'description', 'file', 'user_id', 'code'];
