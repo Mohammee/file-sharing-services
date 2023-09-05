@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DownloadFile;
 use App\Http\Requests\MediaRequest;
 use App\Models\Media;
 use Illuminate\Contracts\Support\Renderable;
@@ -70,6 +71,8 @@ class MediaController extends Controller
     public function download(Request $request, Media $media)
     {
         if ($media->file && Storage::disk('local')->exists($media->file)) {
+
+            event(new DownloadFile($media));
             return response()->download(Storage::disk('local')->path($media->file));
         }
 

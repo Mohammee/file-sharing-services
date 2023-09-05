@@ -62,5 +62,11 @@ class Media extends Model
     }
 
 
+    public function logs()
+    {
+        return $this->morphMany(Stream::class,'streamable');
+    }
+
+
 
 }
