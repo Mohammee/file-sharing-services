@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use App\Models\Media;
 use App\Models\Stream;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
@@ -25,5 +26,7 @@ class FileStream
             'ip' => request()->ip(),
             'user_agent' => request()->userAgent(),
         ]);
+
+        $event->media->increment('count', 1);
     }
 }

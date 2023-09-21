@@ -14,6 +14,8 @@
                     <div class="card-body">
                         <label class="col-form-label mb-2 d-block">Title: <strong
                                 class="text-info">{{ $media->title }}</strong></label>
+                        <label class="col-form-label mb-2 d-block">Download Number: <strong
+                                class="text-info">{{ $media->count }}</strong></label>
                         <label class="col-form-label mb-2 d-block">Description: <strong
                                 class="text-info">{{ $media->description }}</strong></label>
                         <label class="col-form-label mb-2 d-block">Shared Url: <strong class="text-info"

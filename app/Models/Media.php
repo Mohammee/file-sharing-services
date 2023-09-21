@@ -18,7 +18,7 @@ class Media extends Model
     private static string $disk = 'local';
     protected $table = 'media';
 
-    protected $fillable = ['title', 'description', 'file', 'user_id', 'code'];
+    protected $fillable = ['title', 'description', 'file', 'user_id', 'code', 'count'];
 
 
     public function user()
