@@ -16,6 +16,11 @@
 
                     <div class="mx-1 card">
                         <div class="card-body">
+                            <ul>
+                                <li>{{ 'Your Country: '. $geo->country_name }}</li>
+                                <li>{{ 'Your Country Capital: '. $geo->country_capital }}</li>
+                                <li>{{ 'Your Time Now: '. now()->setTimezone($geo->time_zone->name)->format('g:i a') }}</li>
+                            </ul>
                             <label class="col-form-label mb-2 d-block">Title: <strong
                                     class="text-info">{{ $media->title }}</strong></label>
                             <label class="col-form-label mb-2 d-block">Download Number: <strong

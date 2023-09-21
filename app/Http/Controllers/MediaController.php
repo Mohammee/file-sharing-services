@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Events\DownloadFile;
 use App\Http\Requests\MediaRequest;
 use App\Models\Media;
+use App\services\IPGeolocation;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -62,10 +63,12 @@ class MediaController extends Controller
 
     public function downloadForm(Request $request, Media $media): Renderable
     {
+        $ip = $request->ip() != '127.0.0.1' ?: '100.128.0.0';
+        $geo = IPGeolocation::getInfo($ip);
         $link = URL::signedRoute('medias.download', ['media' => $media]);
 
 //        dd($link);
-        return view('medias.download', compact('media', 'link'));
+        return view('medias.download', compact('media', 'link', 'geo'));
     }
 
     public function download(Request $request, Media $media)
