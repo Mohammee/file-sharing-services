@@ -6,6 +6,8 @@ use App\Models\Media;
 use App\Models\Stream;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class FileStream
 {
@@ -22,11 +24,20 @@ class FileStream
      */
     public function handle(object $event): void
     {
-        $event->media->logs()->create([
-            'ip' => request()->ip(),
-            'user_agent' => request()->userAgent(),
-        ]);
+        try {
+            DB::beginTransaction();
+            $event->media->logs()->create([
+                'ip' => request()->ip(),
+                'user_agent' => request()->userAgent(),
+            ]);
 
-        $event->media->increment('count', 1);
+            $event->media->increment('count', 1);
+
+            DB::commit();
+        }catch (\Exception $e){
+            DB::rollBack();
+
+            Log::error('Database Error: ' . $e->getMessage());
+        }
     }
 }
